@@ -25,14 +25,14 @@ namespace DioAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProduto()
         {
-            return await _context.Produto.ToListAsync();
+            return await _context.Produto.Include("Categoria").ToListAsync();
         }
 
         // GET: api/Produtoes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
-            var produto = await _context.Produto.FindAsync(id);
+            var produto = await _context.Produto.Include("Categoria").FirstOrDefaultAsync(predicate:x => x.Id==id);
 
             if (produto == null)
             {
@@ -52,7 +52,10 @@ namespace DioAPI.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(produto).State = EntityState.Modified;
+            //_context.Entry(produto).State = EntityState.Modified;
+            _context.SetModified(produto);
+
+
 
             try
             {

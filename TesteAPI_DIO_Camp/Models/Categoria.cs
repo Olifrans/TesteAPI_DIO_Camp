@@ -13,6 +13,6 @@ namespace TesteAPI_DIO_Camp.Models
         [Required(ErrorMessage = "Por favor informar a descrição da categoria")]
         [Display(Name = "Categorias")]
         public string Descricao { get; set; }
-        public List<Produto> Produto { get; set; }
+        //public List<Produto> Produto { get; set; }
     }
 }

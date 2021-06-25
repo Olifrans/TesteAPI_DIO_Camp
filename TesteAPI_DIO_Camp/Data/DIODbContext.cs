@@ -16,5 +16,12 @@ namespace TesteAPI_DIO_Camp.Data
             optionsBuilder.UseSqlServer(connectionString:
                 @"Server=DESKTOP-OEF3FS8;Database=DIOCampDataAPI;Trusted_Connection=True;MultipleActiveResultSets=True");
         }
+
+        //Metodo seta o estado da entidade para modificado
+        public virtual void SetModified(object entity)
+        {
+            Entry(entity).State = EntityState.Modified;
+
+        }
     }
 }
